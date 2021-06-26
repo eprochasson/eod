@@ -28,9 +28,10 @@ mobility.sort_index()
 # Rolling, 2 week window
 mobility[mobility_columns] = mobility[mobility_columns].rolling('28D').mean()
 
-mobility.to_csv("data/clean/mobility_hk_only.csv")
 for c in mobility_columns:
     mobility[c] = mobility[c] / 100  # For some reason, Google distributes the percentage data * 100. Annoying.
+
+mobility.to_csv("data/clean/mobility_hk_only.csv")
 
 # covid data
 cv = pd.read_csv("data/covid.csv")
