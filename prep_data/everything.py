@@ -12,7 +12,7 @@ stations = ['CWB', 'Shenzhen', 'Guangzhou', 'Central', 'Macau', 'Zhuhai', 'Shati
 columns = [f"{station}_{index}" for index in indices for station in stations]
 
 
-mobility = pd.read_csv("data/clean/mobility_hk_only.csv")
+mobility = pd.read_csv("../data/clean/mobility_hk_only.csv")
 mobility_columns = ['retail_and_recreation_percent_change_from_baseline',
                     'grocery_and_pharmacy_percent_change_from_baseline',
                     'parks_percent_change_from_baseline',
@@ -25,12 +25,12 @@ mobility.index = pd.DatetimeIndex(pd.to_datetime(mobility['date']))
 mobility.sort_index()
 
 # covid data
-cv = pd.read_csv("data/covid.csv")
+cv = pd.read_csv("../data/covid.csv")
 cv.index = pd.DatetimeIndex(cv['date'])
 cv['new_cases_rolling'] = cv['new_cases'].rolling("28D").mean()
 del cv['date']
 
-air = pd.read_csv("data/clean/air_pollution_gd_area.csv")
+air = pd.read_csv("../data/clean/air_pollution_gd_area.csv")
 air.index = pd.DatetimeIndex(pd.to_datetime(air['date']))
 air = air[air.index.year >= 2020]  # First date available in the mobility dataset
 
@@ -41,7 +41,7 @@ air['doy'] = air.index.dayofyear
 air['month'] = air.index.month
 air['quarter'] = air.index.quarter
 
-air_baseline = pd.read_csv("data/clean/air_pollution_baseline.csv")
+air_baseline = pd.read_csv("../data/clean/air_pollution_baseline.csv")
 air_baseline.index = air_baseline.doy
 air_baseline.rename(columns={c: c.replace("from_baseline", "seasonal_variation") for c in air_baseline.columns}, inplace=True)
 del air_baseline['doy']
@@ -80,4 +80,4 @@ for c in columns:
 
 air = air.merge(cv, how='left', left_index=True, right_index=True)
 
-air.to_csv("data/clean/altogether.csv", index=False)
+air.to_csv("data/clean/everything.csv", index=False)
