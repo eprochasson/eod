@@ -27,17 +27,17 @@ import pandas as pd
 
 
 # Metadata
-main = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[1]/item')
-schema = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[2]/item')
-statuses = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[3]/item')
-reference = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[4]/item')
-stat_display = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[5]/item')
-stat_multiplier = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[6]/item')
-stat_precision  = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[7]/item')
-stat_type = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[8]/item')
-stat_var = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[9]/item')
-column_description = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[10]/item')
-class_var = pd.read_xml("data/shipping/SC_Metadata.xml", '/SC/data/table[11]/item')
+main = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[1]/item')
+schema = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[2]/item')
+statuses = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[3]/item')
+reference = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[4]/item')
+stat_display = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[5]/item')
+stat_multiplier = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[6]/item')
+stat_precision  = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[7]/item')
+stat_type = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[8]/item')
+stat_var = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[9]/item')
+column_description = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[10]/item')
+class_var = pd.read_xml("../data/shipping/SC_Metadata.xml", '/SC/data/table[11]/item')
 
 t = None
 for i in range(1, 5):
@@ -94,3 +94,5 @@ for class_ in [c for c in class_var['CLASS_VAR'].unique() if c not in ['CCYY', '
 
 
 del t['THEME']
+
+t.to_csv("data/clean/shipping.csv")

@@ -67,9 +67,3 @@ cwb_no2 = df[['CWB_no2']].copy().rename(columns={'CWB_no2': 'no2'})
 mb = mobility.merge(cwb_no2, how='left', left_index=True, right_index=True)
 m = mb['no2'].mean()
 mb['no2_percent_change_from_baseline'] = mb['no2'].map(lambda x: (m - x) / m * 100)
-
-
-import xmltodict
-import lxml
-
-res = xmltodict.parse(open("data/shipping/SC_Masterdata1.xml").read())
